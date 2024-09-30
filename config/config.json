@@ -1,22 +1,22 @@
 {
   "development": {
     "username": "sa",
-    "password": "YourPassword123",
-    "database": "TestSQLServer",
+    "password": "yourStrong(!)Password",
+    "database": "sequelize",
     "host": "127.0.0.1",
     "dialect": "mssql"
   },
   "test": {
     "username": "sa",
-    "password": "YourPassword123",
-    "database": "TestSQLServer",
+    "password": "yourStrong(!)Password",
+    "database": "sequelize",
     "host": "127.0.0.1",
     "dialect": "mssql"
   },
   "production": {
     "username": "sa",
-    "password": "YourPassword123",
-    "database": "TestSQLServer",
+    "password": "yourStrong(!)Password",
+    "database": "sequelize",
     "host": "127.0.0.1",
     "dialect": "mssql"
   }

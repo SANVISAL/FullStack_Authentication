@@ -1,57 +1,45 @@
-import { Model, DataTypes, Optional } from "sequelize";
-import { sequelize } from "../src/database/sequelize-source";
+import { DataTypes, Sequelize } from "sequelize";
+// import { sequelize } from "../src/database/sequelize-source";
+import { PrimaryModel } from "./primary.model";
+import { Token } from "./user-token.model";
 
-// Define an interface for the attributes
-interface UserAttributes {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
-// Define an interface for the creation attributes
-export interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
-
-// Define the User model class
-class User
-  extends Model<UserAttributes, UserCreationAttributes>
-  implements UserAttributes
-{
-  public id!: number;
-  public firstName!: string;
-  public lastName!: string;
+export class User extends PrimaryModel {
+  public userName!: string;
+  public gender!: string;
   public email!: string;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
-}
-
-User.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-  },
-  {
-    sequelize, 
-    tableName: "Users",
+  public password!: string;
+  public static initialize(sequelize: Sequelize) {
+    User.init(
+      {
+        userName: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        gender: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        email: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          unique: true,
+        },
+        password: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          unique: true,
+        },
+      },
+      {
+        sequelize,
+        tableName: "Users",
+      }
+    );
   }
-);
-
-export default User;
+  public static associate() {
+    User.hasMany(Token, {
+      foreignKey: "userId",
+      as: "tokens",
+    });
+  }
+}
