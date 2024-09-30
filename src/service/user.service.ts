@@ -3,7 +3,7 @@ import UserRepository from "../database/repository/user.repository";
 import { User } from "../../models/user.model";
 import { IUser, IToken } from "../interface/common";
 import { generateToken, getExpiryDate } from "../utils/jwt/jwt";
-// import { HttpException } from "../utils/http-acception";
+import { HttpException } from "../utils/http-acception";
 import { StatusCode } from "../utils/const/status-code";
 import { TokenRepository } from "../database/repository/token.repository";
 import { ResponseToken } from "../interface/common";
@@ -43,7 +43,7 @@ export class UserService {
     try {
       const user = await this._userRepository.create(data);
       if (!user) {
-        // throw new HttpException("User creation failed.", StatusCode.BadRequest);
+        throw new HttpException("User creation failed.", StatusCode.BadRequest);
       }
       //  GENERATE TOKE
       const token = await generateToken(user);
