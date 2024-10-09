@@ -2,15 +2,27 @@ import { DataTypes, Sequelize } from "sequelize";
 // import { sequelize } from "../src/database/sequelize-source";
 import { PrimaryModel } from "./primary.model";
 import { Token } from "./user-token.model";
+import { Role } from "./role.model";
 
 export class User extends PrimaryModel {
   public userName!: string;
   public gender!: string;
   public email!: string;
   public password!: string;
+  public roleId!: number;
   public static initialize(sequelize: Sequelize) {
     User.init(
       {
+        roleId: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+          references: {
+            model: "roles", // Reference to Roles table
+            key: "id",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "SET NULL",
+        },
         userName: {
           type: DataTypes.STRING,
           allowNull: false,
@@ -41,5 +53,6 @@ export class User extends PrimaryModel {
       foreignKey: "userId",
       as: "tokens",
     });
+    User.belongsTo(Role, { foreignKey: "roleId", as: "role" });
   }
 }

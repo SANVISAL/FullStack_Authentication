@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('tokens', {
+    await queryInterface.createTable("tokens", {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -13,8 +13,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Users', // Adjust according to your actual user table name
-          key: 'id',
+          model: "Users", // Adjust according to your actual user table name
+          key: "id",
         },
       },
       refreshToken: {
@@ -38,12 +38,11 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: null
+        defaultValue: null,
       },
-      
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('tokens');
+    await queryInterface.dropTable("tokens");
   },
 };

@@ -10,25 +10,15 @@ export class PrimaryModel extends Model {
 
 PrimaryModel.init(
   {
-    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: null,
-    },
-    deletedAt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: null,
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
     },
   },
   {
     sequelize,
-    timestamps: true,
-    paranoid: true,
+    timestamps: true, // Automatically manages createdAt and updatedAt
+    paranoid: true, // Enables soft delete with deletedAt
   }
 );
