@@ -72,4 +72,30 @@ export default class UserRepository {
       throw err;
     }
   }
+  public async updateRole(userId: number, newRoleId: number) {
+    try {
+      const newRole = await User.update(
+        { roleId: newRoleId },
+        { where: { userId: userId } }
+      );
+      console.log("User role updated successfully");
+      return newRole;
+    } catch (error) {
+      throw error;
+    }
+  }
+  public async updateUser(userid: number, updateData: IUser) {
+    try {
+      const user = await User.findByPk(userid);
+      if (!user) {
+        throw new Error("User not found");
+      }
+      const userUpdate = await user.update({
+        ...updateData,
+        updatedAt: new Date(),
+      });
+      console.log("User updated successfully");
+      return userUpdate;
+    } catch (error) {}
+  }
 }
