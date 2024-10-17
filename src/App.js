@@ -11,10 +11,6 @@ function App() {
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
-    // <div>
-    //   <RegisterForm />
-    //   <Login />
-    // </div>
   );
 }
 export default App;
