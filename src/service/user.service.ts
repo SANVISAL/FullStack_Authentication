@@ -67,4 +67,13 @@ export class UserService {
       throw err;
     }
   }
+  public async updateRole(userId: number, roleId: number) {
+    try {
+      const data = await this._userRepository.updateRole(userId, roleId);
+      return data;
+    } catch (error) {
+      console.error("Error updating role:", error);
+      throw error;
+    }
+  }
 }

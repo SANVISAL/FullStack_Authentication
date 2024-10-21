@@ -25,3 +25,8 @@ export interface ResponseToken {
   refreshToken: string;
   expiresIn?: number;
 }
+
+export interface loginType {
+  email: string;
+  password: string;
+}

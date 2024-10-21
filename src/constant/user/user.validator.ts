@@ -15,3 +15,12 @@ export const createUserSchema = Joi.object({
 export const updateUserSchema = Joi.object({
   ...userSchema,
 }).options({ allowUnknown: true });
+
+export const loginSchema = Joi.object({
+  email: Joi.string().email().required().label("Email"),
+  password: Joi.string().required().label("Password"),
+})
+// export const userLoginSchema = {
+//   email: Joi.string().email().required().label("Email"),
+//   password: Joi.string().required().label("Password"),
+// };

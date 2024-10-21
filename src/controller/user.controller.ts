@@ -37,6 +37,12 @@ export class UserController {
       throw err;
     }
   };
+  // public updateRole = async (req: Request, res: Response) => {
+  //   try {
+  //     const userData = req.
+  //     const data = await this._userService.updateRole();
+  //   } catch (error) {}
+  // };
 
   // public updateUser = async (req: Request, res: Response) => {
   //   try {

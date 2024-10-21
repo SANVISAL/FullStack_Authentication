@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
 import { User } from "../../../models";
-import { IUser } from "../../interface/common";
+import { IUser, loginType } from "../../interface/common";
 
 @injectable()
 export default class AuthRepository {
@@ -12,6 +12,14 @@ export default class AuthRepository {
     } catch (err) {
       console.error("Error creating user:", err);
       throw err;
+    }
+  }
+  public async findByEmail(email: string) {
+    try {
+      const user = await User.findOne({ where: { email: email } });
+      return user;
+    } catch (error) {
+      throw error;
     }
   }
 }
