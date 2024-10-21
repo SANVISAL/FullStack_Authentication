@@ -45,8 +45,8 @@ export default function RegisterForm() {
       const result = await response.json();
       if (response.ok) {
         console.log("result:", result);
-        const { accessToken } = result.token;
-        localStorage.setItem("token", accessToken);
+        const Token = result.token;
+        localStorage.setItem("token", Token);
         setSubmitted(true);
         setUsername("");
         setGender("");
